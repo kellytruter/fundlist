@@ -1,0 +1,182 @@
+$theme_primary_color: #0b97c4;
+$theme_primary_color_highlight: #0bbfed;
+$theme_subtle_lines: #dddddd;
+
+.fund-list {
+  width: 845px;
+  border: 1px solid #cfcfcf;
+  padding: 5px;
+  margin: 0 auto;
+  background-color: #e5e5e5;
+  box-shadow: inset 0 0 5px #999999;
+
+  .fund-container {
+    border: 1px solid #efefef;
+    padding: 10px;
+    background-color: #ffffff;
+    margin: 0 0 5px 0;
+    transition: box-shadow 0.2s ease-in-out;
+    cursor: pointer;
+
+    .share-selector {
+      display: block;
+      float: right;
+      overflow: hidden;
+
+      select {
+        border: 1px solid $theme_subtle_lines;
+        border-radius: 3px;
+        padding: 5px 8px;
+        box-shadow: none;
+      }
+    }
+
+    .fund-heading {
+      color: $theme_primary_color;
+      font-weight: bold;
+      font-size: 1.25em;
+    }
+
+    .fund-type {
+      color: #777777;
+      font-weight: bold;
+    }
+
+    hr {
+      margin: 15px 0 8px 0;
+      border-color: $theme_subtle_lines;
+    }
+
+    .primary-details {
+      table {
+        display: inline-block;
+        margin: 0;
+        padding: 0;
+        color: #888888;
+        font-size: 0.9em;
+
+        tr {
+          background-color: #ffffff;
+          &:nth-child(odd) {
+            background-color: #f3f3f3;
+          }
+          td {
+            padding: 4px 6px;
+          }
+        }
+
+        &.fund-detail {
+          width: 250px;
+          tr {
+            td {
+              &:nth-child(1) {
+                width: 100px;
+              }
+              &:nth-last-child(1) {
+                width: 150px;
+              }
+            }
+          }
+        }
+        &.share-detail {
+          width: 300px;
+          tr {
+            td {
+              &:nth-child(1) {
+                width: 150px;
+              }
+              &:nth-last-child(1) {
+                width: 150px;
+              }
+            }
+          }
+        }
+        &.share-secondary-detail {
+          width: 250px;
+          tr {
+            td {
+              &:nth-child(1) {
+                width: 150px;
+              }
+              &:nth-last-child(1) {
+                width: 100px;
+              }
+            }
+          }
+        }
+      }
+
+      ul {
+        display: inline-block;
+        margin: 0;
+        padding: 0;
+        color: #888888;
+        font-size: 0.9em;
+
+        &.share-detail, &.share-secondary-detail {
+          li {
+            list-style-type: none;
+          }
+        }
+        &.share-detail {
+          width: 300px;
+          li {
+            .detail-label {
+              width: 150px;
+            }
+            .detail-value {
+              width: 150px;
+            }
+          }
+        }
+        &.share-secondary-detail {
+          width: 250px;
+          li {
+            .detail-label {
+              width: 150px;
+            }
+            .detail-value {
+              width: 100px;
+            }
+          }
+        }
+      }
+    }
+
+    .view-chart-text {
+      font-size: 1.1em;
+      font-weight: bold;
+      color: $theme_primary_color;
+      hr {
+        margin: 8px 0 15px 0;
+      }
+    }
+
+    .highchart-container {
+      position: relative;
+
+      .highchart-loading {
+        color: #dfdfdf;
+        font-size: 0.8em;
+      }}
+
+    &:nth-last-child(1) {
+      margin: 0;
+    }
+    &:hover {
+      box-shadow: 0 2px 5px #777777;
+
+      .fund-heading {
+        color: $theme_primary_color_highlight;
+      }
+
+      .fund-type {
+        color: #a3a3a3;
+      }
+
+      .view-chart-text {
+        color: $theme_primary_color_highlight;
+      }
+    }
+  }
+}

@@ -1,0 +1,145 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <!--<h1 class="page-header">Fund List:</h1>-->
+      <div class="fund-list">
+        <div class="fund-container" ng-repeat="fund in $ctrl.funds" ng-click="$ctrl.toggleChart(fund)">
+          <div class="share-selector">
+            Share Class:
+            <select ng-model="fund.shareClassesPrimary" ng-change="$ctrl.switchShare(fund, fund.shareClassesPrimary)" ng-click="$ctrl.disableClick($event)">
+              <option ng-repeat="(shareKey, shareClass) in fund.shareClasses" value="{{ shareKey }}">{{ shareClass['Shareclass Category Taxonomy Id'] }} - {{ fund.shareClasses[fund.shareClassesPrimary]['Shareclass Distribution Taxonomy Id'] | default: '-' }} ({{ fund.shareClasses[fund.shareClassesPrimary]['Fund Currency Code'] | default: '-' }})</option>
+            </select>
+          </div>
+          <div class="fund-heading">{{ fund.name }}</div>
+          <div class="fund-type">{{ fund['Classification Taxonomy Id'] }}</div>
+          <hr/>
+          <div class="primary-details">
+            <!-- Fund Details -->
+            <table cellspacing="0" cellpadding="0" class="fund-detail">
+              <tr>
+                <td>ISIN</td>
+                <td>{{ fund['ISIN Code'] | default: '-' }}</td>
+              </tr>
+              <tr>
+                <td>Asset Class</td>
+                <td>{{ fund['Asset Class Taxonomy Id'] | default: '-' }}</td>
+              </tr>
+              <tr>
+                <td>Region</td>
+                <td>{{ fund['Region Taxonomy Id'] | default: '-' }}</td>
+              </tr>
+              <tr>
+                <td>UCITS Class</td>
+                <td>{{ fund['UCITS Classification Taxonomy Id'] | default: '-' }}</td>
+              </tr>
+              <tr>
+                <td>Fund Status</td>
+                <td>{{ fund['Fund Status Taxonomy Id'] | default: '-' }}</td>
+              </tr>
+            </table>
+            <!-- ShareClass Details -->
+            <table cellspacing="0" cellpadding="0" class="share-detail" ng-show="fund.shareClasses[fund.shareClassesPrimary]['Launch Date Age'] <= 4">
+              <tr>
+                <td>Share Class</td>
+                <td>
+                  {{ fund.shareClasses[fund.shareClassesPrimary]['Shareclass Category Taxonomy Id'] | default: '-' }} -
+                  {{ fund.shareClasses[fund.shareClassesPrimary]['Shareclass Distribution Taxonomy Id'] | default: '-' }}
+                  ({{ fund.shareClasses[fund.shareClassesPrimary]['Fund Currency Code'] | default: '-' }})
+                </td>
+              </tr>
+              <tr>
+                <td>Launch Date</td>
+                <td>{{ fund.shareClasses[fund.shareClassesPrimary]['Launch Date'] | launchDateFormat | default: '-'}}</td>
+              </tr>
+              <tr>
+                <td>Share Age</td>
+                <td>{{ fund.shareClasses[fund.shareClassesPrimary]['Launch Date Age'] }}</td>
+              </tr>
+              <tr>
+                <td>NAV Base</td>
+                <td>{{ fund.shareClasses[fund.shareClassesPrimary]['NAV Base'] | currency:'' | default: '-' }}</td>
+              </tr>
+              <tr>
+                <td>NAV Movement</td>
+                <td>{{ fund.shareClasses[fund.shareClassesPrimary]['NAV Movement Percentage'] | number | default: '-' }} %</td>
+              </tr>
+            </table>
+            <!-- Secondary ShareClass Details -->
+            <table cellspacing="0" cellpadding="0" class="share-secondary-detail" ng-show="fund.shareClasses[fund.shareClassesPrimary]['Launch Date Age'] <= 4">
+              <tr>
+                <td>Share Status</td>
+                <td>{{ fund.shareClasses[fund.shareClassesPrimary]['Shareclass Status Taxonomy Id'] | default: '-' }}</td>
+              </tr>
+              <tr>
+                <td>1st Year Compounded</td>
+                <td>{{ fund.shareClasses[fund.shareClassesPrimary]['Compound Return 1 Year Annual'] | currency:'' | default: '-' }} %</td>
+              </tr>
+              <tr>
+                <td>5th Year Compounded</td>
+                <td>{{ fund.shareClasses[fund.shareClassesPrimary]['Compound Return 5 Year Annual'] | currency:'' | default: '-' }} %</td>
+              </tr>
+              <tr>
+                <td>Total Return Date</td>
+                <td>{{ fund.shareClasses[fund.shareClassesPrimary]['Total Return DateTime'] | defaultDateFormat | default: '-'}}</td>
+              </tr>
+              <tr><td colspan="2">&nbsp;</td></tr>
+            </table>
+            <!-- ShareClass Details -->
+            <ul class="share-detail" ng-show="fund.shareClasses[fund.shareClassesPrimary]['Launch Date Age'] > 4">
+              <li>
+                <span class="detail-label">Share Class</span>
+                <span class="detail-value">
+                  {{ fund.shareClasses[fund.shareClassesPrimary]['Shareclass Category Taxonomy Id'] | default: '-' }} -
+                  {{ fund.shareClasses[fund.shareClassesPrimary]['Shareclass Distribution Taxonomy Id'] | default: '-' }}
+                  ({{ fund.shareClasses[fund.shareClassesPrimary]['Fund Currency Code'] | default: '-' }})
+                </span>
+              </li>
+              <li>
+                <span class="detail-label">Launch Date</span>
+                <span class="detail-value">{{ fund.shareClasses[fund.shareClassesPrimary]['Launch Date'] | launchDateFormat | default: '-'}}</span>
+              </li>
+              <li>
+                <span class="detail-label">Share Age</span>
+                <span class="detail-value">{{ fund.shareClasses[fund.shareClassesPrimary]['Launch Date Age'] }}</span>
+              </li>
+              <li>
+                <span class="detail-label">NAV Base</span>
+                <span class="detail-value">{{ fund.shareClasses[fund.shareClassesPrimary]['NAV Base'] | currency:'' | default: '-' }}</span>
+              </li>
+              <li>
+                <span class="detail-label">NAV Movement</span>
+                <span class="detail-value">{{ fund.shareClasses[fund.shareClassesPrimary]['NAV Movement Percentage'] | number | default: '-' }} %</span>
+              </li>
+            </ul>
+            <!-- Secondary ShareClass Details -->
+            <ul class="share-secondary-detail" ng-show="fund.shareClasses[fund.shareClassesPrimary]['Launch Date Age'] > 4">
+              <li>
+                <span class="detail-label">Share Status</span>
+                <span class="detail-value">{{ fund.shareClasses[fund.shareClassesPrimary]['Shareclass Status Taxonomy Id'] | default: '-' }}</span>
+              </li>
+              <li>
+                <span class="detail-label">1st Year Compounded</span>
+                <span class="detail-value">{{ fund.shareClasses[fund.shareClassesPrimary]['Compound Return 1 Year Annual'] | currency:'' | default: '-' }} %</span>
+              </li>
+              <li>
+                <span class="detail-label">5th Year Compounded</span>
+                <span class="detail-value">{{ fund.shareClasses[fund.shareClassesPrimary]['Compound Return 5 Year Annual'] | currency:'' | default: '-' }} %</span>
+              </li>
+              <li>
+                <span class="detail-label">Total Return Date</span>
+                <span class="detail-value">{{ fund.shareClasses[fund.shareClassesPrimary]['Total Return DateTime'] | defaultDateFormat | default: '-'}}</span>
+              </li>
+            </ul>
+          </div>
+          <hr/>
+          <div class="view-chart-text" ng-hide="fund.displayChart">+ View Line Chart</div>
+          <div class="view-chart-text" ng-show="fund.displayChart">- Hide Line Chart<hr/></div>
+          <div class="highchart-container" ng-show="fund.displayChart">
+            <div class="highchart-loading" ng-show="fund.displayChartLoading">Loading performance chart...</div>
+            <highchart config="fund.shareClasses[fund.shareClassesPrimary].chartConfig"></highchart>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,53 +1,32 @@
-# KURTOSYS Front-end test
+# fundlist
 
-# The task
-Create an angular application which shows the fund and *share class*es information on a page
-The page should have a list of funds where each fund has a dropdown to change *share class* on that specific fund. By default, the first *share class* is selected.
-Make sure the application has tests included.
+This project was generated with the [Angular Full-Stack Generator](https://github.com/DaftMonk/generator-angular-fullstack) version 3.5.0.
 
-## Requirements
-Get the `funds.json` by an AJAX call. Show properties described below
+## Getting Started
 
-When a *share class* is selected/changed, it should get the line chart data for that specific ISIN - however the data response would be the same, pass the following parameters to the chart call:
-- `from` date (unix timestamp)
-- `to` date (unix timestamp)
-- `isin` (string)
+### Prerequisites
 
-Use any chart library to show chart data. (HighCharts preferred)
+- [Git](https://git-scm.com/)
+- [Node.js and npm](nodejs.org) Node ^4.2.3, npm ^2.14.7
+- [Bower](bower.io) (`npm install --global bower`)
+- [Ruby](https://www.ruby-lang.org) and then `gem install sass`
+- [Grunt](http://gruntjs.com/) (`npm install --global grunt-cli`)
+- [MongoDB](https://www.mongodb.org/) - Keep a running daemon with `mongod`
 
-When making the AJAX call for the line chart, make sure a **valid** ISIN is passed (see `"ISIN Code": "GB00BGnotvalid"` in `funds.json`) - otherwise show an error message to the user
+### Developing
 
-- The fund list should show data properties from the fund itself and data from *share class* (see `funds.json`'s structure). Show at least 5 fund-level property and 5 *share class*-level property beside the following ones
-- If a property is empty: a dash should appear.
-- Show `"Lauch Date"` property as `"MM/DD/YYYY"`, other dates should be formatted as `"DD MMM YYYY"`
-- Show `"Compound Return 1 Year Annual"` and `"NAV Base"`. Should have 2 decimal places and thousand separators
-- If the fund is older than 4 year (see `"Lauch Date"` property), show the *share class* properties as a list (`<ul>`) instead of a table
+1. Run `npm install` to install server dependencies.
 
-See a working example here: http://fe2.jpmorgan.com
+2. Run `bower install` to install front-end dependencies.
 
-# Data to be used
-- `funds.json`: contains the fund and *share class* data
-- `chart.json`: contains data for line chart
+3. Run `mongod` in a separate shell to keep an instance of the MongoDB Daemon running
 
-# Project structure
-The project structure should follow the angular team's recommendation, dividing the functionality into "modules"
-You can use any kind of `yeoman` generator to create the structure, like:
-- https://github.com/codigo-pl/generator-angular-feature
-- https://github.com/DaftMonk/generator-angular-fullstack
-- https://github.com/cgross/generator-cg-angular
+4. Run `grunt serve` to start the development server. It should automatically open the client in your browser when ready.
 
-# Development
-- Don't make any design, or keep it minimal, we're interested in how you code :)
-- Feel free to use any library which makes the development easier and faster
-- Make sure the project can be easily extended. Write clean, easily understandable code. Make sure your code is consistent along the whole project
-- Keep in mind others might have to read, learn and change your code in the future
-- Create tests for directives, controllers and services. E2E test is optional
+## Build & development
 
+Run `grunt build` for building and `grunt serve` for preview.
 
-# How to send the test?
-- Fork this repository and make the changes on it
-- Commit as many states as you can while developing
-- Send only the link to your repository. **DON'T CREATE A PULL-REQUEST!**
+## Testing
 
-### gl;hf :)
-
+Running `npm test` will run the unit tests with karma.
