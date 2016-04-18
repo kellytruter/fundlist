@@ -48,12 +48,19 @@ $theme_subtle_lines: #dddddd;
     }
 
     .primary-details {
+      min-height: 125px;
+
       table {
+        float: left;
         display: inline-block;
-        margin: 0;
+        margin: 0 0 0 5px;
         padding: 0;
         color: #888888;
         font-size: 0.9em;
+
+        &:nth-child(1) {
+          margin: 0;
+        }
 
         tr {
           background-color: #ffffff;
@@ -108,10 +115,24 @@ $theme_subtle_lines: #dddddd;
 
       ul {
         display: inline-block;
-        margin: 0;
+        float: left;
+        margin: 0 0 0 5px;
         padding: 0;
         color: #888888;
         font-size: 0.9em;
+
+        li {
+          height: 25px;
+          padding: 4px 6px;
+
+          span {
+            display: inline-block;
+          }
+
+          &:nth-child(odd) {
+            background-color: #f3f3f3;
+          }
+        }
 
         &.share-detail, &.share-secondary-detail {
           li {
@@ -122,10 +143,10 @@ $theme_subtle_lines: #dddddd;
           width: 300px;
           li {
             .detail-label {
-              width: 150px;
+              width: 140px;
             }
             .detail-value {
-              width: 150px;
+              width: 140px;
             }
           }
         }
@@ -133,10 +154,10 @@ $theme_subtle_lines: #dddddd;
           width: 250px;
           li {
             .detail-label {
-              width: 150px;
+              width: 140px;
             }
             .detail-value {
-              width: 100px;
+              width: 90px;
             }
           }
         }
